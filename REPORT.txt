@@ -1,0 +1,12 @@
+Balance libre: 7.50 EUR | En posiciones abiertas: 2.47 EUR
+Tokens analizados: {'FAIL': 16, 'PASS': 1}
+Aun no hay operaciones cerradas.
+
+Motivos de rechazo mas frecuentes:
+    16  un holder supera el limite individual
+    15  top10 concentrado
+    12  liquidez baja
+     3  riesgos graves RugCheck: Low Liquidity
+     2  edad fuera de rango
+     2  poca actividad
+     1  creador tiene 8.8%
