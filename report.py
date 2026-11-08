@@ -1,7 +1,15 @@
 """Resumen del paper trading: python report.py"""
 import sqlite3
+from datetime import datetime, timezone
 
 db = sqlite3.connect("bot.db")
+def _st(k):
+    row = db.execute("SELECT v FROM state WHERE k=?", (k,)).fetchone()
+    return row[0] if row else None
+
+lr, runs = _st("last_run"), _st("runs")
+if lr:
+    print(f"Ultima ejecucion: {datetime.fromtimestamp(lr, timezone.utc):%Y-%m-%d %H:%M} UTC | Ejecuciones totales: {int(runs)}")
 bal = db.execute("SELECT v FROM state WHERE k='balance'").fetchone()[0]
 openv = db.execute("SELECT COALESCE(SUM(size_eur*remaining),0) FROM positions WHERE status='open'").fetchone()[0]
 closed = db.execute("SELECT size_eur, realized_eur, exit_reason FROM positions WHERE status='closed'").fetchall()
