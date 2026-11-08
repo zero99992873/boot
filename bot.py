@@ -55,6 +55,13 @@ class Config:
 
 
 CFG = Config()
+
+# Autoridades de pools conocidas (verifica con un reporte real si cambian).
+KNOWN_POOL_AUTHORITIES = {
+    "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",  # Raydium AMM authority
+    "GpMZbSM2GgvTKHJirzeGfMFoaZ8UR2X7F4v8vHTvxFbL",  # Raydium CPMM authority
+    "39azUYFWPz3VHgKCf3VChUwbpURdCHRxjWVowf5jUJjg",  # pump.fun migration account
+}
 DEXSCREENER = "https://api.dexscreener.com"
 RUGCHECK = "https://api.rugcheck.xyz/v1"
 HTTP = requests.Session()
@@ -169,13 +176,27 @@ def analyze(mint: str, pair: dict) -> tuple[bool, list[str]]:
         fails.append("marcado como rugged")
 
     holders = rc.get("topHolders") or []
-    # Nota: topHolders puede incluir cuentas del pool/bonding curve.
-    # Revisa un par de reportes reales y excluye esas direcciones si hace falta.
+
+    # Excluir cuentas del propio pool / bonding curve: acumulan gran parte del
+    # supply y NO son holders reales. Si RugCheck las incluye, el filtro
+    # rechazaria casi todo.
+    excluded = set(KNOWN_POOL_AUTHORITIES)
+    for m in rc.get("markets") or []:
+        for k in ("pubkey", "liquidityA", "liquidityB"):
+            if m.get(k):
+                excluded.add(m[k])
+    holders = [h for h in holders
+               if h.get("address") not in excluded and h.get("owner") not in excluded]
+
+    def _top(n=3):
+        return ", ".join(f"{h.get('pct', 0):.0f}% {str(h.get('owner') or h.get('address'))[:4]}"
+                         for h in holders[:n])
+
     top10 = sum(h.get("pct", 0) for h in holders[:10])
     if top10 > CFG.max_top10_pct:
-        fails.append(f"top10 concentrado ({top10:.1f}%)")
+        fails.append(f"top10 concentrado ({top10:.1f}%; top: {_top()})")
     if holders and max(h.get("pct", 0) for h in holders) > CFG.max_single_holder_pct:
-        fails.append("un holder supera el limite individual")
+        fails.append(f"un holder supera el limite individual (top: {_top(2)})")
     if sum(1 for h in holders if h.get("insider")) > CFG.max_insider_holders:
         fails.append("demasiados holders 'insider' (cluster)")
 
@@ -306,6 +327,10 @@ def main():
     import sys
     db = init_db()
     log.info("Bot en modo SIMULACION. Balance: %.2f EUR", get_state(db, "balance"))
+    # Latido: deja constancia de cada ejecucion (para saber que esta vivo)
+    row = db.execute("SELECT v FROM state WHERE k='runs'").fetchone()
+    set_state(db, "runs", (row[0] if row else 0) + 1)
+    set_state(db, "last_run", time.time())
     if "--once" in sys.argv:      # modo para GitHub Actions: un ciclo y salir
         run_cycle(db)
         return
