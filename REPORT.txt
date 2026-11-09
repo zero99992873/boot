@@ -1,14 +1,14 @@
-Ultima ejecucion: 2026-11-09 11:17 UTC | Ejecuciones totales: 4
-Balance libre: 5.59 EUR | En posiciones abiertas: 0.00 EUR
-Tokens analizados: {'FAIL': 42, 'PASS': 3}
+Ultima ejecucion: 2026-11-09 21:29 UTC | Ejecuciones totales: 5
+Balance libre: 4.19 EUR | En posiciones abiertas: 1.37 EUR
+Tokens analizados: {'FAIL': 43, 'PASS': 4}
 Operaciones cerradas: 3 | Ganadoras: 0 (0%)
 PnL total: -4.32 EUR | PnL medio: -1.44 EUR
   stop_loss: 3 ops, -4.32 EUR
 
 Motivos de rechazo mas frecuentes:
-    35  un holder supera el limite individual
-    33  top10 concentrado
-    27  liquidez baja
+    36  un holder supera el limite individual
+    34  top10 concentrado
+    28  liquidez baja
     17  edad fuera de rango
     11  poca actividad
      9  riesgos graves RugCheck: Low Liquidity
