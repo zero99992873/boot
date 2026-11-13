@@ -1,13 +1,13 @@
-Ultima ejecucion: 2026-11-12 22:54 UTC | Ejecuciones totales: 15
-Balance libre: 1.55 EUR | En posiciones abiertas: 0.00 EUR
-Tokens analizados: {'FAIL': 106, 'PASS': 10}
+Ultima ejecucion: 2026-11-13 03:06 UTC | Ejecuciones totales: 16
+Balance libre: 1.16 EUR | En posiciones abiertas: 0.36 EUR
+Tokens analizados: {'FAIL': 107, 'PASS': 11}
 Operaciones cerradas: 10 | Ganadoras: 1 (10%)
 PnL total: -8.15 EUR | PnL medio: -0.81 EUR
   stop_loss: 7 ops, -7.97 EUR
   tiempo_maximo: 3 ops, -0.18 EUR
 
 Motivos de rechazo mas frecuentes:
-    76  liquidez baja
+    77  liquidez baja
     46  edad fuera de rango
     44  un holder supera el limite individual
     43  top10 concentrado
