@@ -1,17 +1,17 @@
-Ultima ejecucion: 2026-11-17 06:33 UTC | Ejecuciones totales: 32
-Balance libre: 0.50 EUR | En posiciones abiertas: 0.00 EUR
-Tokens analizados: {'FAIL': 157, 'PASS': 21}
+Ultima ejecucion: 2026-11-17 16:26 UTC | Ejecuciones totales: 33
+Balance libre: 0.37 EUR | En posiciones abiertas: 0.09 EUR
+Tokens analizados: {'FAIL': 174, 'PASS': 22}
 Operaciones cerradas: 21 | Ganadoras: 5 (24%)
 PnL total: -8.87 EUR | PnL medio: -0.42 EUR
   stop_loss: 11 ops, -9.19 EUR
   tiempo_maximo: 10 ops, +0.32 EUR
 
 Motivos de rechazo mas frecuentes:
-   122  liquidez baja
-    56  edad fuera de rango
+   138  liquidez baja
+    58  edad fuera de rango
     47  un holder supera el limite individual
     46  top10 concentrado
-    36  riesgos graves RugCheck: Low Liquidity
+    39  riesgos graves RugCheck: Low Liquidity
     34  poca actividad
-     6  riesgos graves RugCheck: Creator history of rugged tokens
+     9  riesgos graves RugCheck: Creator history of rugged tokens
      6  riesgos graves RugCheck: Large Amount of LP Unlocked, Low Liquidity
