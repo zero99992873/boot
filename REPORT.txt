@@ -1,4 +1,4 @@
-Ultima ejecucion: 2026-11-19 02:46 UTC | Ejecuciones totales: 38
+Ultima ejecucion: 2026-11-19 10:47 UTC | Ejecuciones totales: 39
 Balance libre: 0.19 EUR | En posiciones abiertas: 0.00 EUR
 Tokens analizados: {'FAIL': 191, 'PASS': 24}
 Operaciones cerradas: 24 | Ganadoras: 5 (21%)
